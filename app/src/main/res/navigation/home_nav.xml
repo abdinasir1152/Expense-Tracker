@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.samawade.expensetracker.ui.fragments.DashboardFragment"
+        android:label="fragment_dashboardragment"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/incomeFragment"
+        android:name="com.samawade.expensetracker.ui.fragments.IncomeFragment"
+        android:label="fragment_income"
+        tools:layout="@layout/fragment_income" />
+    <fragment
+        android:id="@+id/expenseFragment"
+        android:name="com.samawade.expensetracker.ui.fragments.ExpenseFragment"
+        android:label="fragment_expense"
+        tools:layout="@layout/fragment_expense" />
+    <fragment
+        android:id="@+id/transactionFragment"
+        android:name="com.samawade.expensetracker.ui.fragments.TransactionFragment"
+        android:label="fragment_transaction"
+        tools:layout="@layout/fragment_transaction" />
+</navigation>
