@@ -41,9 +41,10 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
 
             if(response.isSuccessful){
-                    textIncome.text = response.body()?.userincome.toString()
+                    textIncome.text = "$"+response.body()?.userincome.toString()
                     textExpense.text = response.body()?.userExpense.toString()
                     textBalance.text = response.body()?.balance.toString()
+
 //                textTotalIncome.text = response.body()?.userincome.toString()
 //                textTotalExpense.text = response.body()?.userExpense.toString()
 //
