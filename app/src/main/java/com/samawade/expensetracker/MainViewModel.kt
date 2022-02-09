@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.samawade.expensetracker.model.Login
 import com.samawade.expensetracker.model.Statement
+import com.samawade.expensetracker.model.Statements
 import com.samawade.expensetracker.repository.Repository
 import com.samawade.expensetracker.response.LoginResponse
 import kotlinx.coroutines.launch
@@ -14,8 +15,10 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 
      val statementResponse: MutableLiveData<Response<Statement>> = MutableLiveData()
     val loginResponse: MutableLiveData<Response<LoginResponse>> = MutableLiveData()
+    val allStatementsResponse: MutableLiveData<Response<Statements>> = MutableLiveData()
 
-        fun getStatement(userId: String){
+
+    fun getStatement(userId: String){
         viewModelScope.launch {
             val response = repository.getStatement(userId)
             statementResponse.value = response
@@ -26,6 +29,13 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         viewModelScope.launch {
             val response = repository.login(login)
             loginResponse.value = response
+        }
+    }
+
+    fun getAllStatements(userId: String){
+        viewModelScope.launch {
+            val response = repository.getAllStatements(userId)
+            allStatementsResponse.value = response
         }
     }
 

@@ -29,10 +29,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_16"
-                android:hint="@string/text_title">
+                android:hint="@string/text_desc">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_title"
+                    android:id="@+id/et_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_16"
                 android:hint="@string/text_expense_amount"
-                app:prefixText="@string/text_expense_rupees">
+                app:prefixText="@string/text_expense_dollar">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_amount"

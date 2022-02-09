@@ -3,6 +3,7 @@ package com.samawade.expensetracker.repository
 import com.samawade.expensetracker.api.RetrofitInstance
 import com.samawade.expensetracker.model.Login
 import com.samawade.expensetracker.model.Statement
+import com.samawade.expensetracker.model.Statements
 import com.samawade.expensetracker.response.LoginResponse
 import retrofit2.Response
 
@@ -14,6 +15,10 @@ class Repository {
 
     suspend fun login(login: Login): Response<LoginResponse>{
         return RetrofitInstance.api.login(login)
+    }
+
+    suspend fun getAllStatements(userId: String): Response<Statements> {
+        return RetrofitInstance.api.getAllStatements(userId)
     }
 
 }
