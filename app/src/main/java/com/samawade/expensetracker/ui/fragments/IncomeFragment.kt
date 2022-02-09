@@ -1,20 +1,90 @@
 package com.samawade.expensetracker.ui.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.samawade.expensetracker.MainViewModel
+import com.samawade.expensetracker.MainViewModelFactory
 import com.samawade.expensetracker.R
+import com.samawade.expensetracker.adapter.DashboardAdapter
+import com.samawade.expensetracker.repository.Repository
+import com.samawade.expensetracker.util.Constants
+import kotlinx.android.synthetic.main.fragment_expense.*
+import kotlinx.android.synthetic.main.fragment_income.*
 
-class IncomeFragment : Fragment() {
+class IncomeFragment : Fragment(R.layout.fragment_income) {
+    lateinit var sharedPreferences: SharedPreferences
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_income, container, false)
+    lateinit var viewModel: MainViewModel
+    //    private val viewModel: MainViewModel by activityViewModels()
+    private val myAdapter by lazy { DashboardAdapter(false) }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpRecyclerView()
+        sharedPreferences = requireContext().getSharedPreferences(Constants.KEY_PREFERENCES, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+
+        val token = sharedPreferences.getString(Constants.KEY_TOKEN, "")
+        val id = sharedPreferences.getString(Constants.ID_TOKEN, "")
+
+        val repository = Repository()
+        val viewModelFactory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+
+
+        id?.let { viewModel.getStatement(it) }
+        id?.let { viewModel.getAllStatements(it) }
+
+
+        viewModel.statementResponse.observe(this, Observer { response ->
+            Log.d("Response", "TEST")
+
+
+            if(response.isSuccessful){
+//                textIncome.text = "$"+response.body()?.userincome.toString()
+                textTotalIncome.text = "$"+response.body()?.userincome.toString()
+//                textBalance.text = "$"+response.body()?.balance.toString()
+
+//                textTotalIncome.text = response.body()?.userincome.toString()
+//                textTotalExpense.text = response.body()?.userExpense.toString()
+//
+                Log.d("Response", response.body()?.userincome.toString())
+                Log.d("Response", response.body()?.userExpense.toString())
+                Log.d("Response", response.body()?.balance.toString())
+//                textView.text = response.body()?.get(0)?.username!!
+            } else{
+                Log.d("Response", response.errorBody().toString())
+            }
+        })
+
+        viewModel.allStatementsResponse.observe(this, Observer { response ->
+            Log.d("Response", "TEST")
+            if(response.isSuccessful){
+                response.body()?.let { myAdapter.setData(it.info) }
+//                textView.text = response.body()?.get(0)?.username!!
+            } else{
+                Log.d("Response", response.errorBody().toString())
+            }
+        })
+
+
+    }
+
+
+
+    fun setUpRecyclerView(){
+        recyclerView_income.adapter = myAdapter
+        recyclerView_income.layoutManager = LinearLayoutManager(activity)
     }
 
 }

@@ -4,7 +4,9 @@ import com.samawade.expensetracker.api.RetrofitInstance
 import com.samawade.expensetracker.model.Login
 import com.samawade.expensetracker.model.Statement
 import com.samawade.expensetracker.model.Statements
+import com.samawade.expensetracker.model.Transaction
 import com.samawade.expensetracker.response.LoginResponse
+import com.samawade.expensetracker.response.TransactionResponse
 import retrofit2.Response
 
 class Repository {
@@ -15,6 +17,10 @@ class Repository {
 
     suspend fun login(login: Login): Response<LoginResponse>{
         return RetrofitInstance.api.login(login)
+    }
+
+    suspend fun transaction(transaction: Transaction): Response<TransactionResponse>{
+        return RetrofitInstance.api.transaction(transaction)
     }
 
     suspend fun getAllStatements(userId: String): Response<Statements> {

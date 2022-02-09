@@ -42,8 +42,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
-        val username = editTextUsername.text.toString()
-        val password = editTextPass.text.toString()
+//        val username = editTextUsername.text.toString()
+//        val password = editTextPass.text.toString()
+
 
 
         buttonLogin.setOnClickListener {

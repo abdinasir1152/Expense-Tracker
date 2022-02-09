@@ -30,7 +30,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     lateinit var viewModel: MainViewModel
 //    private val viewModel: MainViewModel by activityViewModels()
-    private val myAdapter by lazy { DashboardAdapter() }
+    private val myAdapter by lazy { DashboardAdapter(true) }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

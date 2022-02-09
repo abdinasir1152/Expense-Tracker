@@ -2,15 +2,15 @@
     <string name="app_name">Expenso</string>
     <string name="text_save_transaction">Save Transaction</string>
     <string name="text_ui_mode">UI Mode</string>
-    <string name="text_total_income">TOTAL INCOME</string>
-    <string name="text_total_expense">TOTAL EXPENSE</string>
-    <string name="text_total_balance">TOTAL BALANCE</string>
+    <string name="text_total_income">Total Income</string>
+    <string name="text_total_expense">Total Expense</string>
+    <string name="text_total_balance">Total Balance</string>
 
-    <string name="total_income_format">$ %1$d </string>
-    <string name="total_expense_format">$ %d </string>
-    <string name="income_format">$ %d </string>
-    <string name="expense_format">$ %d </string>
-    <string name="total_balance_format">$ %d </string>
+    <string name="total_income_format">$1200 </string>
+    <string name="total_expense_format">$300 </string>
+    <string name="income_format">$1200 </string>
+    <string name="expense_format">$300 </string>
+    <string name="total_balance_format">$900 </string>
 
     <string name="text_recent_transactions">Recent Transactions</string>
     <string name="text_view_all">View all</string>
