@@ -2,16 +2,10 @@ package com.samawade.expensetracker.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.samawade.expensetracker.MainViewModel
-import com.samawade.expensetracker.MainViewModelFactory
+import com.samawade.expensetracker.viewModel.MainViewModel
 import com.samawade.expensetracker.R
-import com.samawade.expensetracker.repository.Repository
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class DashboardActivity : AppCompatActivity() {

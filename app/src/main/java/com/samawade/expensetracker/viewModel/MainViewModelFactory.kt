@@ -1,4 +1,4 @@
-package com.samawade.expensetracker
+package com.samawade.expensetracker.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

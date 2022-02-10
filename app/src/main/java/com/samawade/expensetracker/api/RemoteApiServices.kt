@@ -1,11 +1,9 @@
 package com.samawade.expensetracker.api
 
-import com.samawade.expensetracker.model.Login
-import com.samawade.expensetracker.model.Statement
-import com.samawade.expensetracker.model.Statements
-import com.samawade.expensetracker.model.Transaction
+import com.samawade.expensetracker.model.*
 import com.samawade.expensetracker.response.LoginResponse
 import com.samawade.expensetracker.response.TransactionResponse
+import com.samawade.expensetracker.response.UserResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -27,6 +25,12 @@ interface RemoteApiServices {
     suspend fun transaction(
         @Body transaction: Transaction
     ): Response<TransactionResponse>
+
+    @POST("users")
+    suspend fun user(
+        @Body user: User
+    ): Response<UserResponse>
+
 
     @GET("statements/{userID}")
     suspend fun getAllStatements(

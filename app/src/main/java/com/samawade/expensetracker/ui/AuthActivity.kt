@@ -2,7 +2,7 @@ package com.samawade.expensetracker.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.samawade.expensetracker.MainViewModel
+import com.samawade.expensetracker.viewModel.MainViewModel
 import com.samawade.expensetracker.R
 
 class AuthActivity : AppCompatActivity() {

@@ -5,19 +5,16 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.samawade.expensetracker.MainViewModel
-import com.samawade.expensetracker.MainViewModelFactory
+import com.samawade.expensetracker.viewModel.MainViewModel
+import com.samawade.expensetracker.viewModel.MainViewModelFactory
 import com.samawade.expensetracker.R
 import com.samawade.expensetracker.adapter.DashboardAdapter
 import com.samawade.expensetracker.repository.Repository
 import com.samawade.expensetracker.util.Constants
-import kotlinx.android.synthetic.main.fragment_expense.*
 import kotlinx.android.synthetic.main.fragment_income.*
 
 class IncomeFragment : Fragment(R.layout.fragment_income) {
