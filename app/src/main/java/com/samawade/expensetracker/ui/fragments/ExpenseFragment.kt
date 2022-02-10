@@ -67,7 +67,7 @@ class ExpenseFragment : Fragment(R.layout.fragment_expense) {
         viewModel.allStatementsResponse.observe(this, Observer { response ->
             Log.d("Response", "TEST")
             if(response.isSuccessful){
-                response.body()?.let { myAdapter.setData(it.info ) }
+                response.body()?.let { myAdapter.setData(it.info.filter { it.type == "expense" } ) }
 //                textView.text = response.body()?.get(0)?.username!!
             } else{
                 Log.d("Response", response.errorBody().toString())

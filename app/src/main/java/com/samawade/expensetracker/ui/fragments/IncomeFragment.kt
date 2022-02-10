@@ -74,7 +74,7 @@ class IncomeFragment : Fragment(R.layout.fragment_income) {
                 response.body()?.let {
                     Log.d("Response", it.info.size.toString())
                     Log.d("Response", it.info.toString())
-                    myAdapter.setData(it.info)
+                    myAdapter.setData(it.info.filter { it.type == "income"})
 
                 }
 
