@@ -2,6 +2,7 @@ package com.samawade.expensetracker.ui.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.icu.text.IDNA
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,16 +14,18 @@ import com.samawade.expensetracker.viewModel.MainViewModel
 import com.samawade.expensetracker.viewModel.MainViewModelFactory
 import com.samawade.expensetracker.R
 import com.samawade.expensetracker.adapter.DashboardAdapter
+import com.samawade.expensetracker.model.Info
 import com.samawade.expensetracker.repository.Repository
 import com.samawade.expensetracker.util.Constants
 import kotlinx.android.synthetic.main.fragment_income.*
+import okhttp3.Response
 
 class IncomeFragment : Fragment(R.layout.fragment_income) {
     lateinit var sharedPreferences: SharedPreferences
 
     lateinit var viewModel: MainViewModel
     //    private val viewModel: MainViewModel by activityViewModels()
-    private val myAdapter by lazy { DashboardAdapter(false) }
+    private val myAdapter by lazy { DashboardAdapter() }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,7 +70,14 @@ class IncomeFragment : Fragment(R.layout.fragment_income) {
         viewModel.allStatementsResponse.observe(this, Observer { response ->
             Log.d("Response", "TEST")
             if(response.isSuccessful){
-                response.body()?.let { myAdapter.setData(it.info) }
+                Log.d("Response", response.body().toString())
+                response.body()?.let {
+                    Log.d("Response", it.info.size.toString())
+                    Log.d("Response", it.info.toString())
+                    myAdapter.setData(it.info)
+
+                }
+
 //                textView.text = response.body()?.get(0)?.username!!
             } else{
                 Log.d("Response", response.errorBody().toString())
@@ -83,5 +93,7 @@ class IncomeFragment : Fragment(R.layout.fragment_income) {
         recyclerView_income.adapter = myAdapter
         recyclerView_income.layoutManager = LinearLayoutManager(activity)
     }
+
+
 
 }
