@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.samawade.expensetracker.viewModel.MainViewModel
 import com.samawade.expensetracker.viewModel.MainViewModelFactory
@@ -35,10 +36,10 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             val bundle = Bundle().apply {
                 putSerializable("transaction", it)
             }
-//            findNavController().navigate(
-//                R.id.action_breakingNewsFragment_to_articleFragment,
-//                bundle
-//            )
+            findNavController().navigate(
+                R.id.action_dashboardFragment_to_transactionDetailsFragment,
+                bundle
+            )
         }
         sharedPreferences = requireContext().getSharedPreferences(KEY_PREFERENCES, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
