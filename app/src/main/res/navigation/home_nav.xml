@@ -25,4 +25,9 @@
         android:name="com.samawade.expensetracker.ui.fragments.TransactionFragment"
         android:label="fragment_transaction"
         tools:layout="@layout/fragment_transaction" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.samawade.expensetracker.ui.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

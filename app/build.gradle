@@ -65,5 +65,9 @@ dependencies {
     // Architectural Components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
 
+    // third party dependencies -------------------------------------------------------------------
+    implementation 'com.mikhaellopez:circularimageview:3.2.0'          // circle image view
+
+
 
 }
