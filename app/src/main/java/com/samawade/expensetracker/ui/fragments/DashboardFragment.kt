@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.samawade.expensetracker.viewModel.MainViewModel
 import com.samawade.expensetracker.viewModel.MainViewModelFactory
 import com.samawade.expensetracker.R
-import com.samawade.expensetracker.adapter.DashboardAdapter
+import com.samawade.expensetracker.adapter.TransactionAdapter
 import com.samawade.expensetracker.repository.Repository
 import com.samawade.expensetracker.util.Constants
 import com.samawade.expensetracker.util.Constants.Companion.KEY_PREFERENCES
@@ -23,12 +23,23 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     lateinit var viewModel: MainViewModel
 //    private val viewModel: MainViewModel by activityViewModels()
-    private val myAdapter by lazy { DashboardAdapter() }
+    private val myAdapter by lazy { TransactionAdapter() }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
+
+        myAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("transaction", it)
+            }
+//            findNavController().navigate(
+//                R.id.action_breakingNewsFragment_to_articleFragment,
+//                bundle
+//            )
+        }
         sharedPreferences = requireContext().getSharedPreferences(KEY_PREFERENCES, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
@@ -68,7 +79,12 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         viewModel.allStatementsResponse.observe(this, Observer { response ->
             Log.d("Response", "TEST")
             if(response.isSuccessful){
-                response.body()?.let { myAdapter.setData(it.info) }
+                response.body()?.let {
+//                    myAdapter.setData(it.info)
+                    myAdapter.differ.submitList(it.info.toList())
+
+                }
+
 //                textView.text = response.body()?.get(0)?.username!!
             } else{
                 Log.d("Response", response.errorBody().toString())

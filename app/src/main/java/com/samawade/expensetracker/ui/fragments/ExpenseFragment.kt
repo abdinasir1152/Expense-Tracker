@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.samawade.expensetracker.viewModel.MainViewModel
 import com.samawade.expensetracker.viewModel.MainViewModelFactory
 import com.samawade.expensetracker.R
-import com.samawade.expensetracker.adapter.DashboardAdapter
+import com.samawade.expensetracker.adapter.TransactionAdapter
 import com.samawade.expensetracker.repository.Repository
 import com.samawade.expensetracker.util.Constants
 import kotlinx.android.synthetic.main.fragment_expense.*
@@ -22,7 +22,7 @@ class ExpenseFragment : Fragment(R.layout.fragment_expense) {
 
     lateinit var viewModel: MainViewModel
     //    private val viewModel: MainViewModel by activityViewModels()
-    private val myAdapter by lazy { DashboardAdapter() }
+    private val myAdapter by lazy { TransactionAdapter() }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,7 +67,7 @@ class ExpenseFragment : Fragment(R.layout.fragment_expense) {
         viewModel.allStatementsResponse.observe(this, Observer { response ->
             Log.d("Response", "TEST")
             if(response.isSuccessful){
-                response.body()?.let { myAdapter.setData(it.info.filter { it.type == "expense" } ) }
+                response.body()?.let { myAdapter.differ.submitList(it.info.filter { it.type == "expense"}.toList()) }
 //                textView.text = response.body()?.get(0)?.username!!
             } else{
                 Log.d("Response", response.errorBody().toString())
