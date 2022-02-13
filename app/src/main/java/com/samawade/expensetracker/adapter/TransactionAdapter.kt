@@ -18,7 +18,7 @@ class TransactionAdapter(): RecyclerView.Adapter<TransactionAdapter.MyViewHolder
 
     private val differCallback =object : DiffUtil.ItemCallback<Info>(){
         override fun areItemsTheSame(oldItem: Info, newItem: Info): Boolean {
-            return oldItem.description == newItem.description
+            return oldItem._id == newItem._id
         }
 
         override fun areContentsTheSame(oldItem: Info, newItem: Info): Boolean {
